@@ -8,11 +8,11 @@
         <version>3.0.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>test-balancer</artifactId>
+    <groupId>com.ab</groupId>
+    <artifactId>forwarder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>test-balancer</name>
-    <description>test-balancer</description>
+    <name>forwarder</name>
+    <description>forwarder</description>
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.7.22</kotlin.version>

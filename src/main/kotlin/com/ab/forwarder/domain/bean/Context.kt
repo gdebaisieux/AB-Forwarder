@@ -1,4 +1,4 @@
-package com.example.testbalancer
+package com.ab.forwarder.domain.bean
 
 import org.springframework.stereotype.Component
 import kotlin.concurrent.getOrSet

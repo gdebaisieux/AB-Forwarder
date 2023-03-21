@@ -1,5 +1,6 @@
-package com.example.testbalancer
+package com.ab.forwarder.domain.strategy.balancer
 
+import com.example.testbalancer.MissingForwarderHeaderException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.net.URI
@@ -44,7 +45,7 @@ class ForwarderStrategy(val httpClient: HttpClient) {
     }
 
     fun getForwardedLocation(headers: Map<String, Any>): String {
-        if(! headers.containsKey(headerName.lowercase())) {
+        if(! headers.containsKey(headerName.uppercase())) {
             return when(missingHeaderStrategyType) {
                 MissingHeaderStrategyType.A ->  aUrl
                 MissingHeaderStrategyType.B -> bUrl

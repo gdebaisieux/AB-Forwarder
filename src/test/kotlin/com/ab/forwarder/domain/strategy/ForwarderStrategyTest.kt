@@ -1,14 +1,21 @@
-package com.example.testbalancer
+package com.ab.forwarder.domain.strategy
 
+import com.ab.forwarder.domain.strategy.balancer.ForwarderStrategy
+import com.example.testbalancer.MissingForwarderHeaderException
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
+import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
+import java.net.http.HttpClient
 
 @ExtendWith(MockitoExtension::class)
 internal class ForwarderStrategyTest {
+
+    @Mock
+    private lateinit var httpClient: HttpClient
 
     @InjectMocks
     private lateinit var strategy: ForwarderStrategy
