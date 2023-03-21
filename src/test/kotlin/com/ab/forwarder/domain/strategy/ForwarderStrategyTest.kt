@@ -1,7 +1,7 @@
 package com.ab.forwarder.domain.strategy
 
 import com.ab.forwarder.domain.strategy.balancer.ForwarderStrategy
-import com.example.testbalancer.MissingForwarderHeaderException
+import com.ab.forwarder.infrastructure.exception.MissingForwarderHeaderException
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

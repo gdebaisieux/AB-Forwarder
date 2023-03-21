@@ -1,4 +1,4 @@
-package com.example.testbalancer
+package com.ab.forwarder.web.advice
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

@@ -1,6 +1,6 @@
 package com.ab.forwarder.domain.strategy.balancer
 
-import com.example.testbalancer.MissingForwarderHeaderException
+import com.ab.forwarder.infrastructure.exception.MissingForwarderHeaderException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.net.URI
@@ -52,7 +52,7 @@ class ForwarderStrategy(val httpClient: HttpClient) {
                 MissingHeaderStrategyType.REJECT -> throw MissingForwarderHeaderException()
             }
         }
-        val headerValue = headers[headerName].toString().lowercase()
+        val headerValue = headers[headerName.uppercase()].toString().lowercase()
         val expected = strategyType == StrategyType.INCLUSION
         return if (values.map { it.lowercase() }.contains(headerValue) == expected) {
             aUrl
