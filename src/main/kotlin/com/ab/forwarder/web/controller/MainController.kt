@@ -3,6 +3,7 @@ package com.ab.forwarder.web.controller
 import com.ab.forwarder.domain.strategy.balancer.ForwarderStrategy
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -28,6 +29,9 @@ class MainController(val forwarder: ForwarderStrategy) {
             .map { it.toString() }
             .collect(Collectors.toMap({it.uppercase()},{ request.getHeader(it) }))
 
+        val cookies = mutableMapOf<String, Any>()
+        request.cookies?.forEach { cookies[it.name.uppercase()] = it.value }
+
         val params = request.parameterMap.map { entry ->
             entry.value.joinToString("&") {
                 entry.key.plus("=").plus(it)
@@ -41,10 +45,12 @@ class MainController(val forwarder: ForwarderStrategy) {
             queryParameters = params,
             method = request.method,
             body = body,
-            headers = headers
+            headers = headers,
+            cookies = cookies
         )
 
         return ResponseEntity.status(answer.statusCode())
             .body(answer.body())
     }
+
 }
