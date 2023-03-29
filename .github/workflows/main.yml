@@ -1,6 +1,6 @@
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     branches:
     - main
     
@@ -19,4 +19,6 @@ jobs:
         distribution: 'zulu' 
     
     - name: build app
-      run: ./mvnw clean test
+      run: |
+        chmod a+x mvnw
+        ./mvnw clean test
