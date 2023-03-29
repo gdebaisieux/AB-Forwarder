@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+    - main
+    
+jobs:
+  build:
+    name: build & test project
+    runs-on: ubuntu-latest
+    steps:
+    - name: setup java env
+      uses: actions/setup-java@v2.5.1
+      with:
+        java-version: 17
+    
+    - name: build app
+      run: ./mvnw clean test
