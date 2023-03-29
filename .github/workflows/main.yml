@@ -9,10 +9,14 @@ jobs:
     name: build & test project
     runs-on: ubuntu-latest
     steps:
+    - name: checkout sources
+      uses: actions/checkout@v2.7.0
+      
     - name: setup java env
       uses: actions/setup-java@v2.5.1
       with:
         java-version: 17
+        distribution: corretto 
     
     - name: build app
       run: ./mvnw clean test
