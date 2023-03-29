@@ -15,8 +15,8 @@ jobs:
     - name: setup java env
       uses: actions/setup-java@v2.5.1
       with:
-        java-version: 17
-        distribution: corretto 
+        java-version: '17'
+        distribution: 'corretto' 
     
     - name: build app
       run: ./mvnw clean test
