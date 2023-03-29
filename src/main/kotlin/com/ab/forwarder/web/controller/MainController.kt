@@ -4,6 +4,8 @@ import com.ab.forwarder.domain.strategy.balancer.ForwarderStrategy
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -15,7 +17,7 @@ import java.util.stream.Collectors
 class MainController(val forwarder: ForwarderStrategy) {
 
     @RequestMapping("**")
-    fun genericServlet(request: HttpServletRequest, response: HttpServletResponse): Any {
+    fun genericServlet(request: HttpServletRequest, response: HttpServletResponse): HttpEntity<Any> {
         val requestedURI = request.requestURI
         val forbiddenHeaders = listOf(
             "connection",
@@ -48,9 +50,13 @@ class MainController(val forwarder: ForwarderStrategy) {
             headers = headers,
             cookies = cookies
         )
+        val responseHeaders = HttpHeaders()
+        for(responseHeader in answer.headers().map()) {
+            responseHeaders.add(responseHeader.key, responseHeader.value[0].toString())
+        }
 
-        return ResponseEntity.status(answer.statusCode())
-            .body(answer.body())
+        response.status = answer.statusCode()
+        return HttpEntity(answer.body(), responseHeaders)
     }
 
 }

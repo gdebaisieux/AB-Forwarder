@@ -11,8 +11,8 @@
     <groupId>com.ab</groupId>
     <artifactId>forwarder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>forwarder</name>
-    <description>forwarder</description>
+    <name>AB-forwarder</name>
+    <description>AB-forwarder</description>
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.7.22</kotlin.version>

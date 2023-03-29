@@ -29,7 +29,7 @@ class Configuration {
     lateinit var discriminatorLocation: ForwarderStrategy.DiscriminatorLocation
 
     @Bean
-    fun httpClient(): HttpClient = HttpClient.newHttpClient()
+    fun httpClient(): HttpClient = HttpClient.newBuilder().followRedirects(HttpClient.Redirect.ALWAYS).build()
 
     @Bean
     fun forwarderConfiguration() = ForwarderConfiguration(

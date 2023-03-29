@@ -8,6 +8,7 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
+import java.nio.charset.Charset
 
 @Service
 class ForwarderStrategy(
@@ -36,7 +37,7 @@ class ForwarderStrategy(
             if (body?.isEmpty()!!) HttpRequest.BodyPublishers.noBody() else HttpRequest.BodyPublishers.ofString(body)
         )
 
-        return httpClient.send(newRequest.build(), HttpResponse.BodyHandlers.ofString())
+        return httpClient.send(newRequest.build(), HttpResponse.BodyHandlers.ofString(Charset.forName("UTF-8")))
     }
 
     fun getForwardedLocation(values: Map<String, Any>): String {
