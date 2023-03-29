@@ -5,7 +5,7 @@ COPY . .
 RUN ls -la
 
 RUN chmod a+x mvnw
-RUN ./mvnw clean package
+RUN ./mvnw clean package -DskipTests
 RUN mv target/*.jar compiled.jar
 
 FROM openjdk:17-slim-buster as run_image

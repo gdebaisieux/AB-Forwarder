@@ -6,7 +6,7 @@ on:
     
 jobs:
   build:
-    name: build & test project
+    name: build , test & deploy image
     runs-on: ubuntu-latest
     steps:
     - name: checkout sources
@@ -18,7 +18,13 @@ jobs:
         java-version: '17'
         distribution: 'zulu' 
     
-    - name: build app
+    - name: test app
       run: |
         chmod a+x mvnw
         ./mvnw clean test
+
+    - name: build & push image
+      uses: docker/build-push-action@v4
+      with:
+        push: true
+        tags: gfyhser/AB-forwarder:latest
